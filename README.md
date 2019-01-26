@@ -212,7 +212,7 @@ python3 classification_sample.py --labels test_model.labels  -m test_model.xml -
 ```
 
 ## Conclusions
-PyTorch to ONNX to OpenVino workflow fully validated and will produce identical results if same input vector is used. CPU FP32 and GPU FP32 or FP16 results are very similar with NCS FP16 having slight discrepancies. 
+PyTorch to ONNX to OpenVino workflow validated and likely to produce identical results if same input vector is used. CPU FP32 and GPU FP32 or FP16 results are very similar with NCS FP16 having slight discrepancies. 
 
 ## References: 
 - https://software.intel.com/en-us/forums/computer-vision/topic/802631
