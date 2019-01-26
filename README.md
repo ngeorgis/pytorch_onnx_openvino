@@ -68,7 +68,26 @@ The OpenVino output is similar but not identical to PyTorch due to the imaging p
 
 To ensure identical input we will run again with the same input vector that was saved in the PyTorch notebook ( test_in_vector.npy ).
 
-The modified classification_sample.py has a new parameter -rf to allow this.
+The modified Intel OpenVino SDK **classification_sample.py** now has a new parameter **-rf** to allow this.
+
+```
+diff classification_sample.py ~/intel/computer_vision_sdk_2018.5.445/deployment_tools/inference_engine/samples/python_samples/classification_sample.py
+
+45d44
+<     parser.add_argument("-rf", "--read_vector_from_file", help="Read input vector from file", default=False, action="store_true")
+94,99d92
+<     # Read input vector to compare with PyTorch
+<     if args.read_vector_from_file:
+<         r = np.load("test_in_vector.npy")
+<         #print (r)
+<         images[0] = r
+<  
+124,126d116
+< 
+<     print (res[0][0:10])
+< 
+```
+
 
 In addition we need to run the model optimizer again with new parameters:
 ```
