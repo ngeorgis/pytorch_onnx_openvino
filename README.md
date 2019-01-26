@@ -170,7 +170,7 @@ The new output is very similar but execution maybe slower.
 7.8347163 label n02105412_kelpie
 ```
 
-## FP16 Validation ob Intel UHD630 GPU
+## FP16 Validation on Intel UHD630 GPU
 
 Run model optimizer again for FP16
 ```
