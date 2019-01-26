@@ -1,4 +1,4 @@
-# pytorch_onnx_openvino
+# Pytorch to ONNX to Intel OpenVino
 
 Validation of the "PyTorch to ONNX to Intel OpenVino workflow" using ImageNet pretrained ResNet-50
 
@@ -36,12 +36,10 @@ Convert ONNX to OpenVino IR
 ```
 mo_onnx.py --input_model test_model.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --data_type FP32 --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP32
 ```
-
 Two files should be now created: test_model.xml and test_model.bin
 
 
 ## Run Intel OpenVino classification
-
 
 Run the modified **classification_sample.py**
 ```
