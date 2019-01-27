@@ -47,7 +47,6 @@ mo_onnx.py --input_model resnet34.onnx --scale_values [51.5865,50.847,51.255] --
 mo_onnx.py --input_model resnet50.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP16 --output_dir fp16
 mo_onnx.py --input_model resnet101.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575 --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP16 --output_dir fp16
 mo_onnx.py --input_model resnet152.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP16 --output_dir fp16
-
 ```
 
 
@@ -220,6 +219,23 @@ MYRIAD NCS2 output
 7.6171875 label n02105056_groenendael
 7.2656250 label n02090622_borzoi,_Russian_wolfhound
 7.2656250 label n02112350_keeshond
+```
+
+## Generate optimized IR
+Make sure to run again the model optimizer again to have all optimizations enabled.
+
+```
+mo_onnx.py  --input_model resnet18.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP32 --output_dir fp32
+mo_onnx.py  --input_model resnet34.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP32 --output_dir fp32
+mo_onnx.py  --input_model resnet50.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP32 --output_dir fp32
+mo_onnx.py --input_model resnet101.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP32 --output_dir fp32
+mo_onnx.py --input_model resnet152.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP32 --output_dir fp32
+
+mo_onnx.py  --input_model resnet18.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP16 --output_dir fp16
+mo_onnx.py  --input_model resnet34.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP16 --output_dir fp16
+mo_onnx.py  --input_model resnet50.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP16 --output_dir fp16
+mo_onnx.py --input_model resnet101.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP16 --output_dir fp16
+mo_onnx.py --input_model resnet152.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP16 --output_dir fp16
 ```
 
 ## Conclusions
