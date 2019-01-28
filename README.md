@@ -12,16 +12,16 @@ Typical PyTorch output when processing dog.jpeg is
 Top 10 results:
 ===============
 
-n02106662_German_shepherd,_German_shepherd_dog,_German_police_dog,_alsatian 		 tensor(15.4252, grad_fn=<SelectBackward>) tensor(235)
-n02111129_Leonberg 		 tensor(11.2401, grad_fn=<SelectBackward>) tensor(255)
-n02105162_malinois 		 tensor(11.0313, grad_fn=<SelectBackward>) tensor(225)
-n02091467_Norwegian_elkhound,_elkhound 		 tensor(9.7304, grad_fn=<SelectBackward>) tensor(174)
-n02090721_Irish_wolfhound 		 tensor(8.9736, grad_fn=<SelectBackward>) tensor(170)
-n02105056_groenendael 		 tensor(8.8621, grad_fn=<SelectBackward>) tensor(224)
-n02116738_African_hunting_dog,_hyena_dog,_Cape_hunting_dog,_Lycaon_pictus 		 tensor(8.5262, grad_fn=<SelectBackward>) tensor(275)
-n02088094_Afghan_hound,_Afghan 		 tensor(8.4578, grad_fn=<SelectBackward>) tensor(160)
-n02090622_borzoi,_Russian_wolfhound 		 tensor(7.9833, grad_fn=<SelectBackward>) tensor(169)
-n02105412_kelpie 		 tensor(7.8347, grad_fn=<SelectBackward>) tensor(227)
+n02106662_German_shepherd,_German_shepherd_dog,_German_police_dog,_alsatian tensor(14.0807, grad_fn=<SelectBackward>) tensor(235)
+n02105162_malinois 		 tensor(11.5884, grad_fn=<SelectBackward>) tensor(225)
+n02111129_Leonberg 		 tensor(11.1329, grad_fn=<SelectBackward>) tensor(255)
+n02116738_African_hunting_dog,_hyena_dog,_Cape_hunting_dog,_Lycaon_pictus 		 tensor(9.3868, grad_fn=<SelectBackward>) tensor(275)
+n02088094_Afghan_hound,_Afghan 		 tensor(8.8371, grad_fn=<SelectBackward>) tensor(160)
+n02091467_Norwegian_elkhound,_elkhound 		 tensor(8.8061, grad_fn=<SelectBackward>) tensor(174)
+n02105056_groenendael 		 tensor(8.4025, grad_fn=<SelectBackward>) tensor(224)
+n02108551_Tibetan_mastiff 		 tensor(7.9561, grad_fn=<SelectBackward>) tensor(244)
+n02090721_Irish_wolfhound 		 tensor(7.9554, grad_fn=<SelectBackward>) tensor(170)
+n02105412_kelpie 		 tensor(7.9356, grad_fn=<SelectBackward>) tensor(227)
 ```
 
 ## Convert ONNX model to Intel OpenVino IR
@@ -36,17 +36,17 @@ Convert ONNX to OpenVino IR
 ```
 mkdir fp16 fp32
 
-mo_onnx.py --input_model resnet18.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP32 --output_dir fp32
-mo_onnx.py --input_model resnet34.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP32 --output_dir fp32
-mo_onnx.py --input_model resnet50.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP32 --output_dir fp32
-mo_onnx.py --input_model resnet101.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP32 --output_dir fp32
-mo_onnx.py --input_model resnet152.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP32 --output_dir fp32
+mo_onnx.py --input_model resnet18.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP32 --output_dir fp32
+mo_onnx.py --input_model resnet34.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP32 --output_dir fp32
+mo_onnx.py --input_model resnet50.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP32 --output_dir fp32
+mo_onnx.py --input_model resnet101.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP32 --output_dir fp32
+mo_onnx.py --input_model resnet152.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP32 --output_dir fp32
 
-mo_onnx.py --input_model resnet18.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP16 --output_dir fp16
-mo_onnx.py --input_model resnet34.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP16 --output_dir fp16
-mo_onnx.py --input_model resnet50.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP16 --output_dir fp16
+mo_onnx.py --input_model resnet18.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP16 --output_dir fp16
+mo_onnx.py --input_model resnet34.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP16 --output_dir fp16
+mo_onnx.py --input_model resnet50.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP16 --output_dir fp16
 mo_onnx.py --input_model resnet101.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575 --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP16 --output_dir fp16
-mo_onnx.py --input_model resnet152.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP16 --output_dir fp16
+mo_onnx.py --input_model resnet152.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --disable_resnet_optimization --disable_fusing --disable_gfusing --data_type=FP16 --output_dir fp16
 ```
 
 
@@ -61,19 +61,18 @@ python3 classification_sample.py --labels test_model.labels  -m fp32/resnet50.xm
 Typical output is
 
 ```
-15.3578548 label n02106662_German_shepherd,_German_shepherd_dog,_German_police_dog,_alsatian
-11.2073364 label n02111129_Leonberg
-10.9584856 label n02105162_malinois
-9.9125824 label n02091467_Norwegian_elkhound,_elkhound
-8.9993858 label n02090721_Irish_wolfhound
-8.9059830 label n02105056_groenendael
-8.5530519 label n02116738_African_hunting_dog,_hyena_dog,_Cape_hunting_dog,_Lycaon_pictus
-8.4389114 label n02088094_Afghan_hound,_Afghan
-7.9750357 label n02090622_borzoi,_Russian_wolfhound
-7.9166594 label n02105412_kelpie
-
+14.5915499 label n02106662_German_shepherd,_German_shepherd_dog,_German_police_dog,_alsatian
+10.5486736 label n02105162_malinois
+10.3912392 label n02111129_Leonberg
+9.3196468 label n02091467_Norwegian_elkhound,_elkhound
+8.3930368 label n02090721_Irish_wolfhound
+8.2550011 label n02105056_groenendael
+8.2503805 label n02116738_African_hunting_dog,_hyena_dog,_Cape_hunting_dog,_Lycaon_pictus
+8.0939283 label n02088094_Afghan_hound,_Afghan
+7.5636091 label n02090622_borzoi,_Russian_wolfhound
+7.5220599 label n02105412_kelpie
 ```
-The OpenVino output is similar but not identical to PyTorch due to the imaging processing pipeline that prepares the input blob. For example PyTorch 15.4252 is not equal to OpenVino 15.3578548 for top prediction German_shepherd.
+The OpenVino output is similar but not identical to PyTorch due to the imaging processing pipeline that prepares the input blob. For example PyTorch 14.0807 is not equal to OpenVino 14.5915499 for top prediction German_shepherd.
 
 ## Run Intel OpenVino classification with input vector saved from PyTorch
 
@@ -116,25 +115,25 @@ python3 classification_sample.py --labels test_model.labels  -m fp32/resnet50.xm
 [ INFO ] Batch size is 1
 [ INFO ] Loading model to the plugin
 [ INFO ] Starting inference (1 iterations)
-[ INFO ] Average running time of one iteration: 16.881704330444336 ms
+[ INFO ] Average running time of one iteration: 16.2506103515625 ms
 [ INFO ] Processing output blob
-[ 0.8969815  -3.0496185  -2.704152   -0.74797183 -3.5622005  -1.7981017
- -4.848625    0.10940043  0.86848116  0.05356478]
+[ 1.4262071  -2.8766239  -2.201517   -1.2191257  -3.089852   -1.4179183
+ -4.359639    0.9693046   0.83319616  0.43519974]
 [ INFO ] Top 10 results: 
 Image dog.jpeg
 
-15.4252472 label n02106662_German_shepherd,_German_shepherd_dog,_German_police_dog,_alsatian
-11.2401333 label n02111129_Leonberg
-11.0313206 label n02105162_malinois
-9.7304420 label n02091467_Norwegian_elkhound,_elkhound
-8.9735994 label n02090721_Irish_wolfhound
-8.8621025 label n02105056_groenendael
-8.5262289 label n02116738_African_hunting_dog,_hyena_dog,_Cape_hunting_dog,_Lycaon_pictus
-8.4578362 label n02088094_Afghan_hound,_Afghan
-7.9833107 label n02090622_borzoi,_Russian_wolfhound
-7.8347163 label n02105412_kelpie
+14.0807028 label n02106662_German_shepherd,_German_shepherd_dog,_German_police_dog,_alsatian
+11.5883627 label n02105162_malinois
+11.1329060 label n02111129_Leonberg
+9.3867922 label n02116738_African_hunting_dog,_hyena_dog,_Cape_hunting_dog,_Lycaon_pictus
+8.8370838 label n02088094_Afghan_hound,_Afghan
+8.8061085 label n02091467_Norwegian_elkhound,_elkhound
+8.4025440 label n02105056_groenendael
+7.9560895 label n02108551_Tibetan_mastiff
+7.9554348 label n02090721_Irish_wolfhound
+7.9355597 label n02105412_kelpie
 ```
-We can now see we are in complete agreement between PyTorch and OpenVino as OpenVino 15.4252472 is equal to PyTorch 15.4252 value as expected assuming we have the same input.
+We can now see we are in agreement between PyTorch and OpenVino as OpenVino 14.0807028 is equal to PyTorch 14.0807 value as expected assuming we have the same input.
 
 
 ## Run model optimizer without optimizations
@@ -165,20 +164,20 @@ Model Optimizer version: 	1.5.12.49d067a0
 [ SUCCESS ] Generated IR model.
 [ SUCCESS ] XML file: /home/ngeorgis/dl/pytorch_onnx_openvino/fp32/resnet50.xml
 [ SUCCESS ] BIN file: /home/ngeorgis/dl/pytorch_onnx_openvino/fp32/resnet50.bin
-[ SUCCESS ] Total execution time: 2.58 seconds. 
+[ SUCCESS ] Total execution time: 2.55 seconds.
 ```
 The new output is very similar but execution may be slower.
 ```
-15.4252462 label n02106662_German_shepherd,_German_shepherd_dog,_German_police_dog,_alsatian
-11.2401333 label n02111129_Leonberg
-11.0313234 label n02105162_malinois
-9.7304478 label n02091467_Norwegian_elkhound,_elkhound
-8.9735994 label n02090721_Irish_wolfhound
-8.8621044 label n02105056_groenendael
-8.5262327 label n02116738_African_hunting_dog,_hyena_dog,_Cape_hunting_dog,_Lycaon_pictus
-8.4578342 label n02088094_Afghan_hound,_Afghan
-7.9833093 label n02090622_borzoi,_Russian_wolfhound
-7.8347163 label n02105412_kelpie
+14.0807085 label n02106662_German_shepherd,_German_shepherd_dog,_German_police_dog,_alsatian
+11.5883684 label n02105162_malinois
+11.1329079 label n02111129_Leonberg
+9.3867903 label n02116738_African_hunting_dog,_hyena_dog,_Cape_hunting_dog,_Lycaon_pictus
+8.8370848 label n02088094_Afghan_hound,_Afghan
+8.8061075 label n02091467_Norwegian_elkhound,_elkhound
+8.4025459 label n02105056_groenendael
+7.9560914 label n02108551_Tibetan_mastiff
+7.9554353 label n02090721_Irish_wolfhound
+7.9355602 label n02105412_kelpie
 ```
 
 ## FP16 Validation on Intel UHD630 GPU
@@ -190,16 +189,16 @@ python3 classification_sample.py --labels test_model.labels  -m fp16/resnet50.xm
 ```
 Similar results
 ```
-15.4296875 label n02106662_German_shepherd,_German_shepherd_dog,_German_police_dog,_alsatian
-11.2500000 label n02111129_Leonberg
-11.0390625 label n02105162_malinois
-9.7500000 label n02091467_Norwegian_elkhound,_elkhound
-8.9765625 label n02090721_Irish_wolfhound
-8.8515625 label n02105056_groenendael
-8.5390625 label n02116738_African_hunting_dog,_hyena_dog,_Cape_hunting_dog,_Lycaon_pictus
-8.4531250 label n02088094_Afghan_hound,_Afghan
-7.9804688 label n02090622_borzoi,_Russian_wolfhound
-7.8398438 label n02105412_kelpie
+14.0468750 label n02106662_German_shepherd,_German_shepherd_dog,_German_police_dog,_alsatian
+11.5625000 label n02105162_malinois
+11.0937500 label n02111129_Leonberg
+9.3671875 label n02116738_African_hunting_dog,_hyena_dog,_Cape_hunting_dog,_Lycaon_pictus
+8.7890625 label n02088094_Afghan_hound,_Afghan
+8.7812500 label n02091467_Norwegian_elkhound,_elkhound
+8.3750000 label n02105056_groenendael
+7.9296875 label n02090721_Irish_wolfhound
+7.9257812 label n02108551_Tibetan_mastiff
+7.9218750 label n02105412_kelpie
 ```
 
 ## Test same FP16 IR on Movidius NCS2
@@ -209,33 +208,33 @@ python3 classification_sample.py --labels test_model.labels  -m fp16/resnet50.xm
 ```
 MYRIAD NCS2 output
 ```
-13.8125000 label n02106662_German_shepherd,_German_shepherd_dog,_German_police_dog,_alsatian
-9.7109375 label n02111129_Leonberg
-9.2500000 label n02105162_malinois
-9.1640625 label n02091467_Norwegian_elkhound,_elkhound
-8.2968750 label n02088094_Afghan_hound,_Afghan
-8.1718750 label n02090721_Irish_wolfhound
-7.7500000 label n02116738_African_hunting_dog,_hyena_dog,_Cape_hunting_dog,_Lycaon_pictus
-7.6171875 label n02105056_groenendael
-7.2656250 label n02090622_borzoi,_Russian_wolfhound
-7.2656250 label n02112350_keeshond
+15.1406250 label n02106662_German_shepherd,_German_shepherd_dog,_German_police_dog,_alsatian
+12.8437500 label n02105162_malinois
+11.7890625 label n02111129_Leonberg
+10.0703125 label n02088094_Afghan_hound,_Afghan
+9.7890625 label n02116738_African_hunting_dog,_hyena_dog,_Cape_hunting_dog,_Lycaon_pictus
+9.0625000 label n02090622_borzoi,_Russian_wolfhound
+8.9296875 label n02091467_Norwegian_elkhound,_elkhound
+8.8437500 label n02090721_Irish_wolfhound
+8.7812500 label n02105056_groenendael
+7.6523438 label n02106030_collie
 ```
 
 ## Generate optimized IR
 Make sure to run again the model optimizer again to have all optimizations enabled.
 
 ```
-mo_onnx.py  --input_model resnet18.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP32 --output_dir fp32
-mo_onnx.py  --input_model resnet34.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP32 --output_dir fp32
-mo_onnx.py  --input_model resnet50.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP32 --output_dir fp32
-mo_onnx.py --input_model resnet101.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP32 --output_dir fp32
-mo_onnx.py --input_model resnet152.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP32 --output_dir fp32
+mo_onnx.py  --input_model resnet18.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --data_type=FP32 --output_dir fp32
+mo_onnx.py  --input_model resnet34.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --data_type=FP32 --output_dir fp32
+mo_onnx.py  --input_model resnet50.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --data_type=FP32 --output_dir fp32
+mo_onnx.py --input_model resnet101.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --data_type=FP32 --output_dir fp32
+mo_onnx.py --input_model resnet152.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --data_type=FP32 --output_dir fp32
 
-mo_onnx.py  --input_model resnet18.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP16 --output_dir fp16
-mo_onnx.py  --input_model resnet34.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP16 --output_dir fp16
-mo_onnx.py  --input_model resnet50.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP16 --output_dir fp16
-mo_onnx.py --input_model resnet101.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP16 --output_dir fp16
-mo_onnx.py --input_model resnet152.onnx --scale_values [51.5865,50.847,51.255] --mean_values [125.307,122.961,113.8575] --reverse_input_channels --data_type=FP16 --output_dir fp16
+mo_onnx.py  --input_model resnet18.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --data_type=FP16 --output_dir fp16
+mo_onnx.py  --input_model resnet34.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --data_type=FP16 --output_dir fp16
+mo_onnx.py  --input_model resnet50.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --data_type=FP16 --output_dir fp16
+mo_onnx.py --input_model resnet101.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --data_type=FP16 --output_dir fp16
+mo_onnx.py --input_model resnet152.onnx --scale_values=[58.395,57.120,57.375] --mean_values=[123.675,116.28,103.53] --reverse_input_channels --data_type=FP16 --output_dir fp16
 ```
 
 ## Conclusions
