@@ -1,6 +1,6 @@
 # Pytorch to ONNX to Intel OpenVino
 
-Validation of the "PyTorch to ONNX to Intel OpenVino workflow" using ImageNet pretrained ResNet-50
+Validation of the "PyTorch to ONNX to Intel OpenVino" workflow using ImageNet pretrained ResNet.
 
 ## PyTorch to ONNX
 
